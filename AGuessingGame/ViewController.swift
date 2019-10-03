@@ -10,11 +10,14 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     // MARK: Properties (where we store information)
     let targetNumber = Int.random(in: 1...100)
     
     @IBOutlet weak var submittedGuess: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var playAgainButton: UIButton!
+    
     // MARK: Initializers
     
     
@@ -35,8 +38,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        playAgainButton.isEnabled = false
+        playAgainButton.backgroundColor = UIColor.white
         
-      speak(this: "I'm thinking of a number between 1 and 100, guess what it is.")
+        speak(this: "I'm thinking of a number between 1 and 100, guess what it is.")
         
         //Report the target number to the console for testing purposes
         print ("For testing purposes, the target number is \(targetNumber)")
@@ -45,28 +50,36 @@ class ViewController: UIViewController {
     
     //Will be used to check guess
     @IBAction func checkGuess(_ sender: Any) {
-    
+        
         //Obtain the guess value from the text field
         let guessText = submittedGuess.text!
         let guessNumber = Int(guessText)!
         
         //For testing purposes, what was the guess?
         print ("For testing purposes, the guess made was \(guessNumber)")
-    
+        
         //Give the appropriate feedback to the user
         if guessNumber > targetNumber {
             print ("Guess lower next time.")
-          speak(this: "Guess lower next time, you noob")
+            speak(this: "You got it! Ha,ha, just kidding, Guess lower next time")
             
         }else if guessNumber < targetNumber {
             print ("Guess higher next time")
-           speak(this: "Guess higher next time dumb dumb")
+            speak(this: "You got it. Ha,ha, you thought. Guess higher next time, dumb, dumb")
             
         }else {
             print ("You are correct!")
-           speak(this: "You got it right. Bazumbla. Finally, took you long enough")
-            
+            speak(this: "You got it right. Bazumbla. Took you long enough")
+            submitButton.isEnabled = false
+            submitButton.backgroundColor = .white
+            playAgainButton.isEnabled = true
+            playAgainButton.backgroundColor = .green
         }
+    }
+    
+    
+    @IBAction func playAgain(_ sender: Any) {
+        
     }
     
 }
