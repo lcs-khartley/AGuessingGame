@@ -38,8 +38,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        submitButton.isEnabled = true
         playAgainButton.isEnabled = false
-        playAgainButton.backgroundColor = UIColor.white
+        playAgainButton.backgroundColor = .white
         
         speak(this: "I'm thinking of a number between 1 and 100, guess what it is.")
         
@@ -61,15 +62,15 @@ class ViewController: UIViewController {
         //Give the appropriate feedback to the user
         if guessNumber > targetNumber {
             print ("Guess lower next time.")
-            speak(this: "You got it! Ha,ha, just kidding, Guess lower next time")
+            speak(this: "Guess lower next time")
             
         }else if guessNumber < targetNumber {
             print ("Guess higher next time")
-            speak(this: "You got it. Ha,ha, you thought. Guess higher next time, dumb, dumb")
+            speak(this: "Guess higher next time.")
             
         }else {
             print ("You are correct!")
-            speak(this: "You got it right. Bazumbla. Took you long enough")
+            speak(this: "You got it right. Took you long enough")
             submitButton.isEnabled = false
             submitButton.backgroundColor = .white
             playAgainButton.isEnabled = true
@@ -79,7 +80,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func playAgain(_ sender: Any) {
-        
+            
+    
     }
     
 }
